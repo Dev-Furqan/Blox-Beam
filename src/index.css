@@ -1,68 +1,1162 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+@import "tailwindcss";
 
 body {
-  margin: 0;
+  background-color: #0A0A0A;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4ADE80;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #22C55E;
+}
+
+/* Animation for modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #4ADE80 0%, #22C55E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* HERO BACKGROUND EXACT TO FIGMA */
+/* ----------------------------------------------------
+   HERO BACKGROUND (Exact match to your screenshot)
+-----------------------------------------------------*/
+.hero-gradient {
+  background:
+    /* soft green glow behind hero (right side) */
+    radial-gradient(
+      circle at 75% 55%,
+      rgba(61, 255, 136, 0.22) 0%,
+      rgba(61, 255, 136, 0.12) 25%,
+      rgba(61, 255, 136, 0.00) 55%
+    ),
+
+    /* soft green glow left-side */
+    radial-gradient(
+      circle at 28% 70%,
+      rgba(74, 222, 128, 0.20) 0%,
+      rgba(74, 222, 128, 0.08) 30%,
+      rgba(74, 222, 128, 0.00) 70%
+    ),
+
+    /* base vertical gradient */
+    linear-gradient(
+      180deg,
+      #000000 47%,
+      #000000 59%,
+      #000000 69%,
+      #010b05 79%,
+      #081b0f 89%,
+      #114a27 99%,
+      #3DFF88 100%
+    );
+}
+/* ==========================
+   TRENDING NOW SECTION
+   ========================== */
+.trending-wrapper {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  background-color: #061006a0; /* semi-transparent dark green */
+}
+
+/* heading + lines */
+.trending-wrapper .trending-heading {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+.trending-wrapper .trending-heading h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+.trending-wrapper .trending-heading p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+.trending-wrapper .trending-heading::before,
+.trending-wrapper .trending-heading::after {
+  content: "";
+  position: absolute;
+  top: 0.9rem;
+  width: 25%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(148, 163, 184, 0.8),
+    transparent
+  );
+}
+.trending-wrapper .trending-heading::before {
+  left: -6%;
+}
+.trending-wrapper .trending-heading::after {
+  right: -6%;
+}
+
+/* grid */
+.trending-wrapper .trending-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+}
+@media (max-width: 640px) {
+  .trending-wrapper,
+  .trusted-wrapper,
+  .why-wrapper,
+  .how-wrapper,
+  .faq-wrapper,
+  .roblox-disclaimer {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .trending-wrapper .trending-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+@media (max-width: 768px) {
+  .trending-wrapper .trending-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* trending card */
+.trending-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  padding: 28px 26px 0; /* footer has its own height */
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.94) 0%,
+    rgba(3, 7, 18, 0.98) 60%,
+    rgba(3, 7, 18, 1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.trending-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(74, 222, 128, 0.7);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 1),
+    0 0 0 1px rgba(34, 197, 94, 0.3);
+}
+
+/* header pill */
+.trending-card .card-header {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.trending-card .card-header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(3, 7, 18, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8);
+}
+.trending-card .card-header-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 0, #4ade80 0, #111827 58%);
+}
+.trending-card .card-header-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* items row */
+.trending-card .card-items-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* item box */
+.trending-card .item-box {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 18px;
+  padding: 16px 14px 14px;
+  text-align: left;
+  background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), #020617);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.trending-card .item-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.trending-card .item-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.9);
+}
+.trending-card .item-box:hover::before {
+  opacity: 1;
+}
+.trending-card .item-img-wrap {
+  border-radius: 14px;
+  padding: 10px;
+  background: radial-gradient(circle at 50% 0, #020617, #020617);
+}
+.trending-card .item-img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+}
+.trending-card .item-name {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+.trending-card .item-price {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* per-card accent colors */
+.trending-card:nth-child(1) .item-box {
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
+}
+.trending-card:nth-child(1) .item-price {
+  color: #22c55e;
+}
+.trending-card:nth-child(2) .item-box {
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.3);
+}
+.trending-card:nth-child(2) .item-price {
+  color: #ef4444;
+}
+.trending-card:nth-child(3) .item-box {
+  border-color: rgba(147, 51, 234, 0.6);
+  box-shadow: 0 0 0 1px rgba(147, 51, 234, 0.35);
+}
+.trending-card:nth-child(3) .item-price {
+  color: #a855f7;
+}
+.trending-card:nth-child(4) .item-box {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35);
+}
+.trending-card:nth-child(4) .item-price {
+  color: #3b82f6;
+}
+
+/* footer area + background image */
+.trending-card .card-footer {
+  position: relative;
+  margin-top: 30px;
+  height: 90px;
+  border-bottom-left-radius: 26px;
+  border-bottom-right-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trending-card .footer-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.55) blur(1.5px);
+  transform: scale(1.1);
+  z-index: 1;
+}
+.trending-card .card-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.25) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 2;
+}
+
+/* button */
+.trending-card .visit-market-btn {
+  --btn-gradient: linear-gradient(90deg, #22c55e, #4ade80);
+  position: relative;
+  padding: 11px 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: #020617;
+  color: #f9fafb;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 3;
   cursor: pointer;
-  transition: border-color 0.25s;
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(15, 23, 42, 0.6);
+  transition: 0.18s ease;
 }
-button:hover {
-  border-color: #646cff;
+.trending-card .visit-market-btn::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--btn-gradient);
+  z-index: -1;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.trending-card .visit-market-btn::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  opacity: 0.65;
+}
+.trending-card .visit-market-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 1),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  opacity: 0.97;
+}
+.trending-card .visit-arrow {
+  font-size: 1rem;
+  margin-top: 1px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* color variants */
+.trending-card .btn-green {
+  --btn-gradient: linear-gradient(90deg, #22c55e, #4ade80);
+}
+.trending-card .btn-red {
+  --btn-gradient: linear-gradient(90deg, #ef4444, #f97316);
+}
+.trending-card .btn-purple {
+  --btn-gradient: linear-gradient(90deg, #a855f7, #ec4899);
+}
+.trending-card .btn-blue {
+  --btn-gradient: linear-gradient(90deg, #3b82f6, #22d3ee);
+}
+
+
+/* ============================
+   TRUSTED SECTION (Figma style)
+   ============================ */
+
+/* ============================
+   TRUSTED SECTION (match design)
+   ============================ */
+
+/* ============================
+   TRUSTED SECTION (pixel-match)
+   ============================ */
+
+.trusted-wrapper {
+  padding: 120px 0 110px;
+  background: #020805;
+}
+
+/* top row */
+.trusted-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 110px;
+}
+
+.trusted-heading-block {
+  max-width: 980px;
+}
+
+.trusted-title {
+  font-size: 3.1rem;          /* large like the design */
+  line-height: 1.15;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.trusted-title span {
+  color: #4ade80;
+}
+
+.trusted-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+/* rating pill top-right */
+.trusted-score-pill {
+  min-width: 230px;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  background: #020b07;
+  border: 1px solid rgba(34, 197, 94, 0.65);
+  box-shadow:
+    0 20px 36px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(15, 23, 42, 0.7);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.trusted-score-stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.trusted-score-star {
+  width: 16px;
+  height: 16px;
+  color: #22c55e;
+}
+
+.trusted-score-text {
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+
+.trusted-score-main {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.trusted-score-sub {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* big dark rounded band */
+.trusted-band {
+  position: relative;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 56px 80px;
+  border-radius: 72px;
+  background:
+    radial-gradient(circle at 10% 50%, #020a05, #020b08 65%),
+    #020b08;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 1),
+    0 0 0 1px rgba(10, 16, 25, 0.9);
+  overflow: hidden;
+}
+
+.trusted-band::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 15% 120%, rgba(16, 185, 129, 0.25), transparent 60%),
+    radial-gradient(circle at 85% 120%, rgba(22, 163, 74, 0.25), transparent 60%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* 4 cards laid in a row */
+.trusted-cards-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.trusted-card {
+  flex: 1 1 0;
+  background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.14), transparent 55%),
+              #020b07;
+  border-radius: 24px;
+  padding: 22px 26px 22px;
+  border: 1px solid rgba(31, 41, 55, 0.9);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+/* card header (stars + verified) */
+.trusted-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.trusted-stars-row {
+  display: flex;
+  gap: 4px;
+}
+
+.trusted-star-icon {
+  width: 18px;
+  height: 18px;
+  color: #16a34a;
+}
+
+/* "Verified Buy" pill inside card */
+.trusted-verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.98);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #e5e7eb;
+}
+
+.trusted-verified-icon {
+  font-size: 0.85rem;
+  color: #22c55e;
+}
+
+/* text inside card */
+.trusted-card-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e5e7eb;
+}
+
+.trusted-card-text {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* THANK YOU at the bottom */
+.trusted-thankyou {
+  margin-top: 46px;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+/* responsiveness */
+@media (max-width: 1280px) {
+  .trusted-top-row {
+    flex-direction: column;
   }
-  a:hover {
-    color: #747bff;
+
+  .trusted-score-pill {
+    align-self: flex-start;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .trusted-band {
+    border-radius: 40px;
+    padding: 32px 28px;
   }
+
+  .trusted-cards-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .trusted-top-row {
+    flex-direction: column;
+  }
+  /* Optionally reduce the horizontal gap if necessary */
+  .trusted-band {
+    padding: 32px 28px;
+    border-radius: 40px;
+  }
+  .trusted-cards-row {
+    flex-direction: column;
+  }
+}
+
+/* ============================
+   WHY CHOOSE BLOXBEAM SECTION
+   ============================ */
+
+.why-wrapper {
+  padding: 110px 0 90px;
+  background: #020b08; /* matches the mid-page background */
+}
+
+.why-heading {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+.why-title {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #f9fafb;
+  margin-bottom: 14px;
+}
+
+.why-title span {
+  color: #22c55e;
+}
+
+.why-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+/* cards row – 4 inline like the design */
+.why-cards-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+@media (max-width: 1200px) {
+  .why-cards-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .why-cards-row {
+    flex-direction: column;
+  }
+}
+
+/* base card style */
+.why-card {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 28px;
+  padding: 26px 28px 24px;
+  border-width: 2px;
+  border-style: solid;
+  background: #041b0f;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+/* top row in card */
+.why-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.why-card-top h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.why-check {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* body text */
+.why-card-text {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+/* colour variants to match Figma */
+
+.why-card-green {
+  border-color: #16a34a;
+  background: radial-gradient(circle at 0 0, #052e16, #02140b 70%);
+}
+
+.why-card-green .why-check {
+  color: #22c55e;
+}
+
+.why-card-blue {
+  border-color: #1d4ed8;
+  background: radial-gradient(circle at 0 0, #020617, #020617 70%);
+}
+
+.why-card-blue .why-check {
+  color: #38bdf8;
+}
+
+.why-card-purple {
+  border-color: #a855f7;
+  background: radial-gradient(circle at 0 0, #1e1035, #050012 70%);
+}
+
+.why-card-purple .why-check {
+  color: #a855f7;
+}
+
+.why-card-red {
+  border-color: #f97316;
+  background: radial-gradient(circle at 0 0, #2a0505, #140202 70%);
+}
+
+.why-card-red .why-check {
+  color: #fb7185;
+}
+/* ============================
+   HOW BLOXBEAM WORKS SECTION
+   ============================ */
+
+.how-wrapper {
+  padding: 110px 0 100px;
+  background: #020b08;
+}
+
+.how-heading {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+.how-title {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #f9fafb;
+  margin-bottom: 14px;
+}
+
+.how-title span {
+  color: #22c55e;
+}
+
+.how-subtitle {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+/* grid: 2 columns, 2 rows, centred band like Figma */
+.how-grid {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 32px;
+}
+
+@media (max-width: 900px) {
+  .how-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* base card */
+.how-card {
+  border-radius: 28px;
+  border-width: 2px;
+  border-style: solid;
+  background: #020812;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  padding: 22px 28px;
+}
+
+.how-card-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* icon circle on the left */
+.how-icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid rgba(248, 250, 252, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.how-text-block h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 6px;
+}
+
+.how-text-block p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #e5e7eb;
+}
+
+/* color variants to match screenshot order */
+
+.how-card-purple {
+  border-color: #a855f7;
+  background: radial-gradient(circle at 0 0, #1e1035, #020012 70%);
+}
+
+.how-card-blue {
+  border-color: #1d4ed8;
+  background: radial-gradient(circle at 0 0, #020617, #020617 70%);
+}
+
+.how-card-green {
+  border-color: #16a34a;
+  background: radial-gradient(circle at 0 0, #052e16, #02140b 70%);
+}
+
+.how-card-red {
+  border-color: #ef4444;
+  background: radial-gradient(circle at 0 0, #2a0505, #140202 70%);
+}
+/* ============================
+   FAQ SECTION
+   ============================ */
+
+/* ============================
+   FAQ SECTION
+   ============================ */
+
+.faq-wrapper {
+  padding: 120px 0 90px;
+  background: #020b08;
+}
+
+.faq-heading {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.faq-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #f9fafb;
+}
+
+.faq-title span {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* layout */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 40px;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .faq-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* sidebar categories (stacked cards) */
+.faq-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-category-btn {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  background: #02080b;
+  padding: 14px 10px 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    transform 0.12s ease;
+}
+
+.faq-category-btn:hover {
+  transform: translateY(-1px);
+}
+
+.faq-category-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 0, #065f46, #020617 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-category-icon {
+  font-size: 1.5rem;
+}
+
+.faq-category-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+/* active category (green outline + brighter inner) */
+.faq-category-active {
+  border-color: #4ade80;
+  box-shadow:
+    0 0 0 1px rgba(34, 197, 94, 0.5),
+    0 12px 30px rgba(0, 0, 0, 0.9);
+  background: #020c09;
+}
+
+.faq-category-active .faq-category-icon-wrap {
+  background: radial-gradient(circle at 50% 0, #16a34a, #052e16 70%);
+}
+
+/* right content side */
+
+.faq-content-heading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #f9fafb;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* accordion items */
+
+.faq-item {
+  border-radius: 16px;
+  background: #020608;
+  border: 1px solid #020816;
+  overflow: hidden;
+}
+
+.faq-item-open {
+  border-color: rgba(16, 185, 129, 0.8);
+}
+
+/* question row */
+
+.faq-question-row {
+  width: 100%;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
+.faq-question-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f9fafb;
+}
+
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  transition: transform 0.18s ease;
+}
+
+.faq-chevron-open {
+  transform: rotate(180deg);
+}
+
+/* answer */
+
+.faq-answer {
+  padding: 0 22px 16px;
+}
+
+.faq-answer p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #d1d5db;
+}
+
+/* bottom link */
+
+.faq-more {
+  margin-top: 32px;
+  font-size: 0.9rem;
+  color: #e5e7eb;
+
+}
+
+.faq-more-link {
+  color: #22c55e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+/* ============================
+   ROBLOX DISCLAIMER (bottom)
+   ============================ */
+
+.roblox-disclaimer {
+  padding: 40px 0 80px;
+  background: #020b08; /* same as FAQ background for seamless look */
+}
+
+.roblox-disclaimer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+.roblox-disclaimer-text {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+[data-aos="scale-up"] {
+  opacity: 0;
+  transform: scale(0.92);
+  transition-property: opacity, transform;
+}
+
+[data-aos="scale-up"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 640px) {
+  .why-wrapper,
+  .how-wrapper,
+  .trending-wrapper {
+    padding: 60px 0 60px; /* reduce top/bottom padding on small screens */
+  }
+
+.why-title,
+.how-title,
+.faq-title {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+.trusted-title {
+  font-size: clamp(2rem, 6vw, 3.1rem);
+}
+
 }

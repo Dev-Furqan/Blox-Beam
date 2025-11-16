@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import LandingPage from './components/LandingPage';
+import AuthPage from './components/AuthPage';
+import GameSelectionModal from './components/GameSelectionModal';
+
+import './App.css';
+import './index.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentView, setCurrentView] = useState('landing');
+  const [showGameModal, setShowGameModal] = useState(false);
+
+  // Initialize AOS once on mount
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out',
+      once: true,
+      offset: 80,
+    });
+  }, []);
+
+  const handleLoginClick = () => setCurrentView('auth');
+  const handleGetStarted = () => setCurrentView('auth');
+  const handleGameSelectClick = () => setShowGameModal(true);
+  const handleCloseModal = () => setShowGameModal(false);
+  const handleLogoClick = () => setCurrentView('landing');
+
+  // Handler to close auth modal (passed to AuthPage)
+  const handleAuthClose = () => setCurrentView('landing');
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-dark text-white">
+      <Header
+        onLoginClick={handleLoginClick}
+        onGameSelectClick={handleGameSelectClick}
+        onLogoClick={handleLogoClick}
+      />
+
+      <main>
+        {currentView === 'landing' ? (
+          <LandingPage onGetStarted={handleGetStarted} />
+        ) : (
+          <AuthPage onClose={handleAuthClose} />
+        )}
+      </main>
+
+      <Footer />
+
+      <GameSelectionModal
+        isOpen={showGameModal}
+        onClose={handleCloseModal}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
